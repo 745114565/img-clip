@@ -77,7 +77,10 @@ window.onload = function(){
 				downMove(e);
 			}
 		}
+		
+		//重新设置高亮区域
 		setChoice();
+		setPreview();
 	}	
 
 function rightMove(e){
@@ -149,15 +152,30 @@ function getPosition(node){
 	return {"left":left,"top":top};
 }
 
-//设置选取区域高亮可见
-function setChoice(){
-	var top = mainDiv.offsetTop;
-	var right = mainDiv.offsetLeft + mainDiv.offsetWidth;
-	var bottom = mainDiv.offsetTop + mainDiv.offsetHeight;
-	var left = mainDiv.offsetLeft;
-	var img2 = document.getElementById('img2');
-	img2.style.clip = 'rect('+top+'px,'+right+'px,'+bottom+'px,'+left+'px)'
-}
+	//设置选取区域高亮可见
+	function setChoice(){
+		var top = mainDiv.offsetTop;
+		var right = mainDiv.offsetLeft + mainDiv.offsetWidth;
+		var bottom = mainDiv.offsetTop + mainDiv.offsetHeight;
+		var left = mainDiv.offsetLeft;
+		var img2 = document.getElementById('img2');
+		img2.style.clip = 'rect('+top+'px,'+right+'px,'+bottom+'px,'+left+'px)'
+	}
+	
+	//预览函数
+	function setPreview(){
+		var top = mainDiv.offsetTop;
+		var right = mainDiv.offsetLeft + mainDiv.offsetWidth;
+		var bottom = mainDiv.offsetTop + mainDiv.offsetHeight;
+		var left = mainDiv.offsetLeft;
+		var img3 = document.getElementById('img3');
+		//预览区域固定（位移）
+		img3.style.top = -top + 'px';
+		img3.style.left = -left + 'px';
+		//切图
+		img3.style.clip = 'rect('+top+'px,'+right+'px,'+bottom+'px,'+left+'px)'
+	
+	}
 }
 
 
